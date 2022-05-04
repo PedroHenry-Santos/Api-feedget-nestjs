@@ -4,9 +4,11 @@ import { CreateFeedbackDto } from './dto/create-feedback.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiCustomResponse } from '../../swagger/decorators/api-response.decorator';
 import { SendMailService } from '../send-mail/send-mail.service';
+import { ApiAllModels } from 'src/swagger/decorators/api-all-models.decorator';
 
 @ApiTags('Feedback')
 @Controller('feedback')
+@ApiAllModels([])
 export class FeedbackController {
   constructor(
     private readonly feedbackService: FeedbackService,
@@ -15,10 +17,14 @@ export class FeedbackController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  @ApiCustomResponse(HttpStatus.CREATED, undefined)
-  @ApiCustomResponse(HttpStatus.BAD_REQUEST, undefined)
+  @ApiCustomResponse(HttpStatus.CREATED)
+  @ApiCustomResponse(HttpStatus.BAD_REQUEST)
   async create(@Body() { comment, type, screenshot }: CreateFeedbackDto) {
-    await this.feedbackService.create({ comment, type, screenshot });
+    const response = await this.feedbackService.create({
+      comment,
+      type,
+      screenshot,
+    });
     await this.sendMailService.sendMail({
       subject: 'Feedback do usuário',
       body: [
@@ -28,5 +34,7 @@ export class FeedbackController {
         `</div>`,
       ].join('\n'),
     });
+
+    return response;
   }
 }
