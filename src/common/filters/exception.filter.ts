@@ -68,7 +68,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     delete body.password;
     delete body.passwordConfirmation;
 
-    console.error({
+    console.log({
       timestamp: new Date().toISOString(),
       method: req.method,
       status,

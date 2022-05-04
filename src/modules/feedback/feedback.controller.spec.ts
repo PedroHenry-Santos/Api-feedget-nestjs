@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '../prisma/prisma.service';
+import { SendMailService } from '../send-mail/send-mail.service';
 import { FeedbackController } from './feedback.controller';
 import { FeedbackService } from './feedback.service';
 
@@ -9,8 +10,10 @@ describe('FeedbackController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [FeedbackController],
-      providers: [FeedbackService, PrismaService],
+      providers: [FeedbackService, PrismaService, SendMailService],
     })
+      .overrideProvider(SendMailService)
+      .useValue({ sendMail: jest.fn() })
       .overrideProvider(PrismaService)
       .useValue({})
       .compile();
