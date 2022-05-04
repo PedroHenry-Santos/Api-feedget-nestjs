@@ -4,6 +4,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpExceptionFilter } from './common/filters/exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { PrismaModule } from './modules/prisma/prisma.module';
+import { FeedbackModule } from './modules/feedback/feedback.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { PrismaModule } from './modules/prisma/prisma.module';
       cache: true,
     }),
     PrismaModule,
+    FeedbackModule,
   ],
   controllers: [],
   providers: [
