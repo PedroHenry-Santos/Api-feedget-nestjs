@@ -1,5 +1,6 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { SendMailService } from './send-mail.service';
 
 describe('SendMailService', () => {

@@ -1,10 +1,11 @@
 import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
 import { FeedbackService } from './feedback.service';
 import { CreateFeedbackDto } from './dto/create-feedback.dto';
-import { ApiTags } from '@nestjs/swagger';
 import { ApiCustomResponse } from '../../swagger/decorators/api-response.decorator';
 import { SendMailService } from '../send-mail/send-mail.service';
-import { ApiAllModels } from 'src/swagger/decorators/api-all-models.decorator';
+import { ApiAllModels } from '../../swagger/decorators/api-all-models.decorator';
 
 @ApiTags('Feedback')
 @Controller('feedback')
