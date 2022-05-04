@@ -5,14 +5,14 @@ import { SwaggerConfig } from './swagger.interface';
  * Change this to suit your app!
  */
 export const SWAGGER_CONFIG: SwaggerConfig = {
-  title: 'Nois Invest API',
-  description: 'Api da ferramenta Nois Invest.',
+  title: 'API Feedget',
+  description: 'Api de envio de feedback.',
   version: '1.0.0',
   tags: [],
   contact: {
-    name: 'Nois Invest',
-    url: 'noisinvest.com',
-    email: 'suport@noisinvest.com',
+    name: 'Pedro',
+    url: '',
+    email: 'pedrohenry.viana@gmail.com',
   },
   bearer: {
     type: 'http',
