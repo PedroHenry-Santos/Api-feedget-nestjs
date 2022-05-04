@@ -49,9 +49,9 @@ export const ApiCustomResponse = <TModel extends Type<any>>(
               $ref: status < 400 ? undefined : getSchemaPath(SwaggerError),
             },
             data: {
-              type: 'array',
-              example: status < 400 ? undefined : null,
-              $ref: getSchemaPath(model),
+              type: 'object',
+              example: status < 400 && model ? undefined : null,
+              $ref: model ? getSchemaPath(model) : undefined,
             },
           },
         },
